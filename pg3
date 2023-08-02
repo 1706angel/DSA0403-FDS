@@ -1,0 +1,19 @@
+import numpy as np
+
+house_data = np.genfromtxt('C:/Users/Admin/AppData/Local/Programs/Python/Python310-32/fods 3.py', delimiter=',', skip_header=True)
+
+print("Shape of house_data array:", house_data.shape)
+
+print("Column names:", house_data[0])
+print("Example row:", house_data[1])
+
+bedroom_column_index = 0
+sale_price_column_index = 3
+
+houses_with_more_than_four_bedrooms = house_data[house_data[:, bedroom_column_index] > 4]
+
+sale_prices_of_houses_with_more_than_four_bedrooms = houses_with_more_than_four_bedrooms[:, sale_price_column_index]
+
+average_sale_price = np.mean(sale_prices_of_houses_with_more_than_four_bedrooms)
+
+print("Average sale price of houses with more than four bedrooms:", average_sale_price)
