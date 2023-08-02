@@ -1,0 +1,19 @@
+import pandas as pd
+
+data = {
+    'CustomerID': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    'Age': [25, 32, 45, 28, 38, 22, 35, 40, 50, 28],
+    'PurchaseMade': ['2023-07-10', '2023-07-25', '2023-06-15', '2023-07-05', '2023-07-12', '2023-07-18', '2023-06-30', '2023-07-20', '2023-07-02', '2023-07-27']
+}
+
+df = pd.DataFrame(data)
+
+df['PurchaseMade'] = pd.to_datetime(df['PurchaseMade'])
+
+one_month_ago = pd.Timestamp.now() - pd.DateOffset(months=1)
+
+df_past_month = df[df['PurchaseMade'] >= one_month_ago]
+
+age_frequency = df_past_month['Age'].value_counts()
+
+print(age_frequency)
